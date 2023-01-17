@@ -1,4 +1,6 @@
-#Here is an example of conflict
+# Here is an example of conflict
+library(tidyverse)
+library(NHANES)
 
 # R basics ---------------------------------------------------------------
 
@@ -17,4 +19,28 @@ summary(airquality)
 library(tidyverse)
 help()
 
-#This will be used for testing out Git
+# This will be used for testing out Git
+
+# Looking at data ---------------------------------------------------------
+
+glimpse(NHANES)
+colnames(NHANES)
+
+select(NHANES, Age, Weight, BMI)
+select(NHANES, -HeadCirc)
+select(NHANES, starts_with("BP"))
+select(NHANES, ends_with("Day"))
+select(NHANES, contains("Age"))
+
+nhanes_small <- select(
+  NHANES,
+  Age,
+  Gender,
+  BMI,
+  Diabetes,
+  PhysActive,
+  BPSysAve,
+  BPDiaAve,
+  Education
+)
+nhanes_small
