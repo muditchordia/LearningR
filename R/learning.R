@@ -1,4 +1,4 @@
-# When conflict happens
+# When conflict happens in git
 
 10
 
