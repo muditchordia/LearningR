@@ -67,4 +67,5 @@ nhanes_small %>%
 ## Inserting images
 
 ![Billi](images/Kat-image.jpeg){#fig-cat}
+
 Cute kitten in @fig-cat
