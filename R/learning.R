@@ -121,3 +121,18 @@ nhanes_small %>%
     )
   )
 
+
+# Exercise 7.12 -----------------------------------------------------------
+
+
+nhanes_small %>%
+  filter(bmi >= 20 & bmi <= 40 & diabetes == "Yes")
+
+nhanes_modified <- nhanes_small %>%
+  mutate(
+    mean_arterial_pressure = ((2 * bp_dia_ave) + bp_sys_ave) / 3,
+    young_child = ifelse(
+      6, "yes", "no"
+    )
+  )
+nhanes_modified
