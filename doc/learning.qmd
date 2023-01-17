@@ -16,14 +16,55 @@ nhanes_small <- read_csv(here::here("data/nhanes_small.csv"))
 #| echo: false
 #| warning: false
 #| message: false
-nhanes_small %>% 
+nhanes_small %>%
   filter(!is.na(diabetes)) %>%
   group_by(diabetes, education) %>%
   summarise(
     mean_age = mean(age, na.rm = TRUE),
     mean_bmi = mean(bmi, na.rm = TRUE)
-  ) %>% 
-    ungroup() %>% 
-    knitr::kable(caption = "Mean values of Age and BMI for each diabetes and education status")
+  ) %>%
+  ungroup() %>%
+  knitr::kable(caption = "Mean values of Age and BMI for each diabetes and education status")
 ```
 
+## Prettier table
+
+# Introduction
+
+A quick **brown** fox jumped over the  *lazy* dogs
+
+# Methods and Results
+
+## Analysis
+
+```{r prettier-table}
+#| echo: false
+#| warning: false
+#| message: false
+
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  group_by(diabetes, education) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  mutate(
+    mean_age = round(mean_age, 1),
+    mean_bmi = round(mean_bmi, 1),
+    education = str_to_sentence(education)
+  ) %>%
+  rename(
+    "Diabetes Status" = diabetes,
+    "Education" = education,
+    "Mean_Age" = mean_age,
+    "Mean_BMI" = mean_bmi
+  ) %>%
+  knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
+```
+
+## Inserting images
+
+![Billi](images/Kat-image.jpeg){#fig-cat}
+Cute kitten in @fig-cat
